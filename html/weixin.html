@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>微信--个人导航网站</title>
+		<link rel="icon" href="../images/logo.png" type="image/svg+xml">
+		<meta name="description" content="一个个人导航网站,让自己更方便">
+	</head>
+	<body>
+		<div id="qrcode-container">
+			<img id="qrcode-image" src="../images/icons/00002-m.png" alt="QR Code" />
+			<p id="qrcode-message">请使用微信扫描二维码</p>
+		</div>
+
+		<style>
+			#qrcode-container {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-color: #fff;
+				padding: 20px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+				z-index: 9999;
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 0.3s ease, visibility 0.3s ease;
+				text-align: center;
+			}
+
+			#qrcode-container.active {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			#qrcode-message {
+				margin-top: 10px;
+				font-size: 14px;
+				color: #888;
+			}
+			body{
+				background-image: url(https://jihulab.com/weblog/gallery02/-/raw/master/BingImage/2016-03-05-2020-08-31/BarHarborCave_EN-AU8598700153_1920x1080.jpg);
+			}
+		</style>
+
+		<script>
+			// 获取DOM元素
+			var qrcodeContainer = document.getElementById('qrcode-container');
+			var qrcodeImage = document.getElementById('qrcode-image');
+
+			// 弹出二维码图片
+			function showQRCode() {
+			  qrcodeContainer.classList.add('active');
+			}
+
+			// 监听窗口大小变化事件，重新调整二维码容器位置
+			window.addEventListener('resize', function() {
+			  qrcodeContainer.style.top = (window.innerHeight - qrcodeContainer.offsetHeight) / 2 + 'px';
+			  qrcodeContainer.style.left = (window.innerWidth - qrcodeContainer.offsetWidth) / 2 + 'px';
+			});
+
+			// 监听页面加载事件和点击事件，触发二维码弹出动画
+			window.addEventListener('load', showQRCode);
+			qrcodeImage.addEventListener('click', showQRCode);
+		</script>
+		<script src="../js/sm.js"></script>
+	</body>
+</html>
