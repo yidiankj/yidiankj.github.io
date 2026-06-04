@@ -116,13 +116,32 @@
         .letter {
             width: 90%;
             max-width: 600px;
-            height: 70vh;
+            max-height: 75vh;
             background: white;
-            padding: 40px;
+            padding: 30px 35px;
             box-shadow: 0 30px 90px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow-y: auto;
             animation: slideIn 1s ease-out;
+            border-radius: 8px;
+        }
+
+        .letter::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .letter::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .letter::-webkit-scrollbar-thumb {
+            background: #ff6b6b;
+            border-radius: 3px;
+        }
+
+        .letter::-webkit-scrollbar-thumb:hover {
+            background: #ee5a6f;
         }
 
         .letter::before {
@@ -139,12 +158,13 @@
                 transparent 20px,
                 transparent 40px
             );
+            border-radius: 8px 8px 0 0;
         }
 
         .letter-content {
-            line-height: 2;
+            line-height: 1.9;
             color: #333;
-            font-size: 24px;
+            font-size: 20px;
         }
 
         .letter-heading {
