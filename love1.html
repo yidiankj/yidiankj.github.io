@@ -752,7 +752,6 @@
         let currentScene = 1;
         let musicPlaying = false;
         let shouldPlayMusic = true;
-        let yesClickCount = 0;
         const music = document.getElementById('bgMusic');
         const musicControl = document.getElementById('musicControl');
 
@@ -827,35 +826,28 @@
         }
 
         function celebrate() {
-            yesClickCount++;
+            music.pause();
+            music.currentTime = 0;
+            musicPlaying = false;
+            shouldPlayMusic = false;
+            musicControl.classList.add('hidden');
             
-            const yesBtn = document.getElementById('yesBtn');
+            document.getElementById('finalMessage').classList.add('hidden');
             
-            if (yesClickCount === 1) {
-                yesBtn.textContent = '再点一次 💖';
-                yesBtn.style.animation = 'pulse 0.5s infinite';
-                
-                document.getElementById('finalMessage').classList.add('hidden');
-            } else if (yesClickCount >= 2) {
-                music.pause();
-                music.currentTime = 0;
-                musicPlaying = false;
-                shouldPlayMusic = false;
-                musicControl.classList.add('hidden');
-                
+            setTimeout(() => {
                 document.getElementById('finalMessage').style.display = 'none';
-                
-                createRose();
-                createFireworks();
-                createParticles();
-                
-                document.body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
-                document.body.style.animation = 'bgPulse 2s ease-in-out infinite';
-                
-                document.getElementById('loveMessage').textContent = '💕 谢谢你答应我 💕';
-                
-                createFallingPetals();
-            }
+            }, 1000);
+            
+            createRose();
+            createFireworks();
+            createParticles();
+            
+            document.body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+            document.body.style.animation = 'bgPulse 2s ease-in-out infinite';
+            
+            document.getElementById('loveMessage').textContent = '💕 谢谢你答应我 💕';
+            
+            createFallingPetals();
         }
 
         function createRose() {
