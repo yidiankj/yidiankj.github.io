@@ -537,12 +537,29 @@
             transform: translate(-50%, -50%);
             z-index: 2000;
             pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .rose-svg {
             width: 300px;
-            height: 400px;
+            height: 350px;
             animation: roseBloom 3s ease-out forwards;
+        }
+
+        .rose-message {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeIn 2s ease-out 2s forwards;
+            text-align: center;
+            white-space: nowrap;
+            margin-top: -120px;
+            pointer-events: none;
         }
 
         .rose-stem {
@@ -582,22 +599,6 @@
             border-radius: 50% 0 50% 0;
             pointer-events: none;
             z-index: 1999;
-        }
-
-        .love-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2001;
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            animation: fadeIn 2s ease-out 2s forwards;
-            text-align: center;
-            pointer-events: none;
         }
 
         @media (max-width: 480px) {
@@ -666,12 +667,11 @@
 
             .rose-svg {
                 width: 240px;
-                height: 320px;
+                height: 280px;
             }
 
-            .love-message {
+            .rose-message {
                 font-size: 24px;
-                padding: 0 20px;
             }
         }
 
@@ -765,8 +765,6 @@
             <button class="yes-btn" id="yesBtn" onclick="celebrate()">我愿意 💕</button>
         </div>
     </div>
-
-    <div class="love-message" id="loveMessage"></div>
 
     <script>
         let currentScene = 1;
@@ -865,8 +863,6 @@
             document.body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
             document.body.style.animation = 'bgPulse 2s ease-in-out infinite';
             
-            document.getElementById('loveMessage').textContent = '💕 谢谢你答应我 💕';
-            
             createFallingPetals();
         }
 
@@ -874,41 +870,36 @@
             const roseContainer = document.createElement('div');
             roseContainer.className = 'rose-container';
             roseContainer.innerHTML = `
-                <svg class="rose-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-                    <path class="rose-stem" d="M100 300 Q95 250 100 200 Q105 150 100 100"/>
-                    <ellipse class="rose-leaf" cx="70" cy="200" rx="25" ry="15" transform="rotate(-30 70 200)"/>
-                    <ellipse class="rose-leaf" cx="130" cy="250" rx="25" ry="15" transform="rotate(30 130 250)"/>
-                    <ellipse class="rose-leaf" cx="65" cy="150" rx="20" ry="12" transform="rotate(-20 65 150)"/>
+                <div class="rose-message">💕 谢谢你答应我 💕</div>
+                <svg class="rose-svg" viewBox="0 0 200 350" xmlns="http://www.w3.org/2000/svg">
+                    <path class="rose-stem" d="M100 350 Q95 300 100 250 Q105 200 100 150"/>
+                    <ellipse class="rose-leaf" cx="70" cy="250" rx="25" ry="15" transform="rotate(-30 70 250)"/>
+                    <ellipse class="rose-leaf" cx="130" cy="300" rx="25" ry="15" transform="rotate(30 130 300)"/>
+                    <ellipse class="rose-leaf" cx="65" cy="200" rx="20" ry="12" transform="rotate(-20 65 200)"/>
                     
-                    <ellipse class="rose-petal-dark" cx="100" cy="80" rx="30" ry="40"/>
-                    <ellipse class="rose-petal" cx="100" cy="85" rx="27" ry="35"/>
-                    <ellipse class="rose-petal-light" cx="100" cy="88" rx="24" ry="30"/>
+                    <ellipse class="rose-petal-dark" cx="100" cy="130" rx="30" ry="40"/>
+                    <ellipse class="rose-petal" cx="100" cy="135" rx="27" ry="35"/>
+                    <ellipse class="rose-petal-light" cx="100" cy="138" rx="24" ry="30"/>
                     
-                    <ellipse class="rose-petal-dark" cx="70" cy="70" rx="20" ry="35" transform="rotate(-45 70 70)"/>
-                    <ellipse class="rose-petal" cx="75" cy="75" rx="17" ry="30" transform="rotate(-40 75 75)"/>
+                    <ellipse class="rose-petal-dark" cx="70" cy="120" rx="20" ry="35" transform="rotate(-45 70 120)"/>
+                    <ellipse class="rose-petal" cx="75" cy="125" rx="17" ry="30" transform="rotate(-40 75 125)"/>
                     
-                    <ellipse class="rose-petal-dark" cx="130" cy="70" rx="20" ry="35" transform="rotate(45 130 70)"/>
-                    <ellipse class="rose-petal" cx="125" cy="75" rx="17" ry="30" transform="rotate(40 125 75)"/>
+                    <ellipse class="rose-petal-dark" cx="130" cy="120" rx="20" ry="35" transform="rotate(45 130 120)"/>
+                    <ellipse class="rose-petal" cx="125" cy="125" rx="17" ry="30" transform="rotate(40 125 125)"/>
                     
-                    <ellipse class="rose-petal-dark" cx="60" cy="90" rx="18" ry="30" transform="rotate(-60 60 90)"/>
-                    <ellipse class="rose-petal" cx="65" cy="93" rx="15" ry="25" transform="rotate(-55 65 93)"/>
+                    <ellipse class="rose-petal-dark" cx="60" cy="140" rx="18" ry="30" transform="rotate(-60 60 140)"/>
+                    <ellipse class="rose-petal" cx="65" cy="143" rx="15" ry="25" transform="rotate(-55 65 143)"/>
                     
-                    <ellipse class="rose-petal-dark" cx="140" cy="90" rx="18" ry="30" transform="rotate(60 140 90)"/>
-                    <ellipse class="rose-petal" cx="135" cy="93" rx="15" ry="25" transform="rotate(55 135 93)"/>
+                    <ellipse class="rose-petal-dark" cx="140" cy="140" rx="18" ry="30" transform="rotate(60 140 140)"/>
+                    <ellipse class="rose-petal" cx="135" cy="143" rx="15" ry="25" transform="rotate(55 135 143)"/>
                     
-                    <ellipse class="rose-petal-light" cx="85" cy="65" rx="15" ry="25" transform="rotate(-30 85 65)"/>
-                    <ellipse class="rose-petal-light" cx="115" cy="65" rx="15" ry="25" transform="rotate(30 115 65)"/>
+                    <ellipse class="rose-petal-light" cx="85" cy="115" rx="15" ry="25" transform="rotate(-30 85 115)"/>
+                    <ellipse class="rose-petal-light" cx="115" cy="115" rx="15" ry="25" transform="rotate(30 115 115)"/>
                     
-                    <circle class="rose-center" cx="100" cy="75" r="12"/>
+                    <circle class="rose-center" cx="100" cy="125" r="12"/>
                 </svg>
             `;
             document.body.appendChild(roseContainer);
-            
-            const loveMsg = document.getElementById('loveMessage');
-            loveMsg.style.opacity = '0';
-            setTimeout(() => {
-                loveMsg.style.opacity = '1';
-            }, 2000);
         }
 
         function createFallingPetals() {
